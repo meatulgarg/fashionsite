@@ -1,0 +1,94 @@
+<!-- BEGIN HEADER -->
+<div class="header">
+  <div class="container">
+    <a class="site-logo"
+       routerLink="/">
+      <img src="assets/assets/corporate/img/logos/fashion4.png"
+           alt="Fash!on Store"></a>
+    <a href="javascript:void(0);"
+       class="mobi-toggler"><i class="fa fa-bars"></i></a>
+
+    <!-- BEGIN CART -->
+    <div *ngIf="user?.personalDetails.firstName"
+         class="top-cart-block">
+      <div class="top-cart-info">
+        <a href="javascript:void(0);"
+           class="top-cart-info-count">{{shoppingcarts.length}}</a>
+        <!--<a href="javascript:void(0);"-->
+        <!--class="top-cart-info-value">$1260</a>-->
+      </div>
+      <i class="fa fa-shopping-cart"></i>
+
+      <div class="top-cart-content-wrapper">
+        <div class="top-cart-content">
+          <ul class="scroller"
+              style="height: 250px;">
+            <li *ngFor="let cart of shoppingcarts">
+              <a href="shop-item.html">
+                <img src="assets/assets/pages/img/cart-img.jpg"
+                     alt="Rolex Classic Watch"
+                     width="37"
+                     height="34"></a>
+              <span class="cart-content-count">x 1</span>
+              <strong><a>{{cart?.product.name}}</a></strong>
+              <em>${{cart?.product.price}}</em>
+              <a href="javascript:void(0);"
+                 class="del-goods">&nbsp;</a>
+            </li>
+          </ul>
+          <div class="text-right">
+            <a routerLink="checkout"
+               class="btn btn-default">Checkout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--END CART -->
+
+    <!-- BEGIN NAVIGATION -->
+    <div class="header-navigation">
+      <ul>
+
+        <li class="dropdown"
+            *ngFor="let cat of categories">
+          <a class="dropdown-toggle"
+             data-toggle="dropdown"
+             data-target="#"
+             href="javascript:;">
+            {{cat.name}}
+          </a>
+
+          <!-- BEGIN DROPDOWN MENU -->
+          <ul class="dropdown-menu">
+            <li *ngFor="let sub of cat.subcategories">
+              <a routerLink="/products/{{cat.name}}/{{sub._id}}">{{sub.name}}</a>
+            </li>
+          </ul>
+          <!-- END DROPDOWN MENU -->
+        </li>
+
+        <li class="menu-search">
+          <span class="sep"></span>
+          <i class="fa fa-search search-btn"></i>
+          <div class="search-box">
+            <form>
+              <div class="input-group">
+                <input type="text"
+                       placeholder="Search"
+                       class="form-control">
+                <span class="input-group-btn">
+                      <button class="btn btn-primary"
+                              routerLink="search"
+                              type="submit">Search</button>
+                    </span>
+              </div>
+            </form>
+          </div>
+        </li>
+        <!-- END TOP SEARCH -->
+      </ul>
+    </div>
+    <!-- END NAVIGATION -->
+  </div>
+</div>
+<!-- Header END -->

@@ -1,0 +1,129 @@
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <h1>
+      Create Brand
+    </h1>
+  </section>
+
+  <!-- Main content -->
+
+  <section class="content">
+    <div class="row">
+      <div class="col-md-8 col-md-push-2">
+        <!-- general form elements -->
+        <div class="box box-primary">
+          <div class="box-header with-border">
+            <h3 class="box-title">Brand</h3>
+          </div>
+          <!-- /.box-header -->
+          <!-- form start -->
+          <form role="form" method="post" #addBrand ="ngForm" (ngSubmit)="addNewBrand()">
+            <div class="box-body">
+              <div class="form-group">
+                <label for="name">Name<span class="require">*</span></label>
+                <input ngModel #brandName = "ngModel" required type="text" name="name" class="form-control" id="cName" placeholder="Enter category name">
+                <div class="alert alert-danger" *ngIf="brandName.touched && !brandName.valid">
+                    Brand name is required
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="description">Description</label>
+                <input ngModel #brandDescription = "ngModel"  type="text" name="description" class="form-control" id="cName" placeholder="Enter category name">
+              </div>
+              <div class="form-group">
+                  <label for="image">Multiple Image Upload</label>
+                  <input type="file" ng2FileSelect [uploader]="uploader" multiple  />
+                  
+                </div>
+
+                <div class="col-md-12" style="margin-bottom: 40px">
+                    
+                       <h3>Upload queue</h3>
+                       <p>Queue length: {{ uploader?.queue?.length }}</p>
+                   
+                       <table class="table">
+                         <thead>
+                         <tr>
+                           <th width="50%">Name</th>
+                           <th>Size</th>
+                           <th>Progress</th>
+                           <th>Status</th>
+                           <th>Actions</th>
+                         </tr>
+                         </thead>
+                         <tbody>
+                         <tr *ngFor="let item of uploader.queue">
+                           <td><strong>{{ item?.file?.name }}</strong></td>
+                           <td *ngIf="uploader.isHTML5" nowrap>{{ item?.file?.size/1024/1024 | number:'.2' }} MB</td>
+                           <td *ngIf="uploader.isHTML5">
+                             <div class="progress" style="margin-bottom: 0;">
+                               <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"></div>
+                             </div>
+                           </td>
+                           <td class="text-center">
+                             <span *ngIf="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
+                             <span *ngIf="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
+                             <span *ngIf="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
+                           </td>
+                           <td nowrap>
+                             <button type="button" class="btn btn-success btn-xs"
+                                 (click)="item.upload()" [disabled]="item.isReady || item.isUploading || item.isSuccess">
+                               <span class="glyphicon glyphicon-upload"></span> Upload
+                             </button>
+                             <button type="button" class="btn btn-warning btn-xs"
+                                 (click)="item.cancel()" [disabled]="!item.isUploading">
+                               <span class="glyphicon glyphicon-ban-circle"></span> Cancel
+                             </button>
+                             <button type="button" class="btn btn-danger btn-xs"
+                                 (click)="item.remove()">
+                               <span class="glyphicon glyphicon-trash"></span> Remove
+                             </button>
+                           </td>
+                         </tr>
+                         </tbody>
+                       </table>
+                   
+                       <div>
+                         <div>
+                           Queue progress:
+                           <div class="progress" style="">
+                             <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader.progress + '%' }"></div>
+                           </div>
+                         </div>
+                         <button type="button" class="btn btn-success btn-s"
+                             (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
+                           <span class="glyphicon glyphicon-upload"></span> Upload all
+                         </button>
+                         <button type="button" class="btn btn-warning btn-s"
+                             (click)="uploader.cancelAll()" [disabled]="!uploader.isUploading">
+                           <span class="glyphicon glyphicon-ban-circle"></span> Cancel all
+                         </button>
+                         <button type="button" class="btn btn-danger btn-s"
+                             (click)="uploader.clearQueue()" [disabled]="!uploader.queue.length">
+                           <span class="glyphicon glyphicon-trash"></span> Remove all
+                         </button>
+                       </div>
+                   
+                     </div>
+
+            </div>
+
+            <!-- /.box-body -->
+
+            <div class="box-footer">
+              <div class="col-md-4 col-md-push-8">
+                <button type="submit" [disabled]="addBrand.invalid" class="btn btn-primary btn-block pull-right">Submit</button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <!-- /.box -->
+      </div>
+      <!--/.col (right) -->
+    </div>
+    <!-- /.row -->
+  </section>
+
+  <!-- /.content -->
+</div>

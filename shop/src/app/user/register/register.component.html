@@ -1,0 +1,259 @@
+<div class="main">
+  <div class="container">
+    <ul class="breadcrumb">
+      <li><a routerLink="/">Home</a></li>
+      <li class="active">Register</li>
+    </ul>
+    <!-- BEGIN SIDEBAR & CONTENT -->
+    <div class="row margin-bottom-40">
+      {{message}}
+      <!-- BEGIN CONTENT -->
+      <div class="col-md-12 col-sm-12">
+        <h1>Register</h1>
+        <!-- BEGIN CHECKOUT PAGE -->
+        <div class="panel-group checkout-page accordion scrollable"
+             id="checkout-page">
+
+
+          <!-- BEGIN PAYMENT ADDRESS -->
+          <div id="payment-address"
+               class="panel panel-default">
+            <div class="panel-heading">
+              <h2 class="panel-title">
+                <a>
+                  Register
+                </a>
+              </h2>
+            </div>
+            <div id="payment-address-content"
+                 class="panel">
+              <form role="form"
+                    (ngSubmit)="registerUser()"
+                    #register="ngForm">
+                <div class="panel-body row">
+                  <div class="col-md-6 col-sm-6">
+                    <h3>Your Personal Details</h3>
+                    <div ngModelGroup="personalDetails">
+                      <div class="form-group">
+                        <label for="firstname">First Name <span class="require">*</span></label>
+                        <input type="text"
+                               id="firstname"
+                               ngModel
+                               required
+                               name="firstName"
+                               class="form-control"
+                               #firstname="ngModel">
+                               <div class="alert alert-danger"
+                               *ngIf="firstname.touched && !firstname.valid">
+                            First Name is required
+                          </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="lastname">Last Name <span class="require">*</span></label>
+                        <input type="text"
+                               ngModel
+                               required
+                               name="lastName"
+                               id="lastname"
+                               class="form-control"
+                               #lastName="ngModel">
+                               <div class="alert alert-danger"
+                               *ngIf="lastName.touched && !lastName.valid">
+                            Last Name is required
+                          </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="email">E-Mail <span class="require">*</span></label>
+                        <input type="text"
+                               ngModel
+                               required
+                               name="email"
+                               id="email"
+                               class="form-control"
+                               #email="ngModel">
+                               <div class="alert alert-danger"
+                               *ngIf="email.touched && !email.valid">
+                            Email is required
+                          </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="telephone">Telephone <span class="require">*</span></label>
+                        <input type="text"
+                               id="telephone"
+                               name="phone"
+                               ngModel
+                               required
+                               class="form-control"
+                               #telephone="ngModel">
+                               <div class="alert alert-danger"
+                               *ngIf="telephone.touched && !telephone.valid">
+                            Teleophone is required
+                          </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="fax">Fax</label>
+                        <input type="text"
+                               name="fax"
+                               ngModel
+                               id="fax"
+                               class="form-control">
+                      </div>
+                    </div>
+
+                    <h3>Credentails</h3>
+                    <div class="form-group">
+                      <label for="username">Username <span class="require">*</span></label>
+                      <input type="text"
+                             id="username"
+                             required
+                             ngModel
+                             name="username"
+                             class="form-control"
+                             #username="ngModel">
+                             <div class="alert alert-danger"
+                             *ngIf="username.touched && !username.valid">
+                          Username is required
+                        </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="password">Password <span class="require">*</span></label>
+                      <input type="password"
+                             id="password"
+                             required
+                             ngModel
+                             name="password"
+                             class="form-control"
+                             #password="ngModel">
+                             <div class="alert alert-danger"
+                             *ngIf="password.touched && !password.valid">
+                          Password is required
+                        </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="password-confirm">Password Confirm <span class="require">*</span></label>
+                      <input type="password"
+                             required
+                             name="password_confirmation"
+                             ngModel
+                             id="password-confirm"
+                             class="form-control"
+                             #passwordConfirm="ngModel">
+                             <div class="alert alert-danger"
+                             *ngIf="passwordConfirm.touched && !passwordConfirm.valid">
+                          Password Confirmation is required
+                        </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-sm-6">
+                    <h3>Your Address</h3>
+                    <div ngModelGroup="address">
+                      <div class="form-group">
+                        <label for="company">Company</label>
+                        <input type="text"
+                               name="company"
+                               ngModel
+                               id="company"
+                               class="form-control">
+                      </div>
+                      <div class="form-group">
+                        <label for="address1">Address 1</label>
+                        <input type="text"
+                               name="address"
+                               ngModel
+                               id="address1"
+                               class="form-control">
+                      </div>
+                      <div class="form-group">
+                        <label for="address2">Address 2</label>
+                        <input type="text"
+                               id="address2"
+                               name="address2"
+                               ngModel
+                               class="form-control">
+                      </div>
+                      <div class="form-group">
+                        <label for="city">City <span class="require">*</span></label>
+                        <input type="text"
+                               id="city"
+                               name="city"
+                               required
+                               ngModel
+                               class="form-control"
+                               #city="ngModel">
+                               <div class="alert alert-danger"
+                               *ngIf="city.touched && !city.valid">
+                            City is required
+                          </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="post-code">Post Code <span class="require">*</span></label>
+                        <input type="text"
+                               id="post-code"
+                               name="zip"
+                               ngModel
+                               required
+                               class="form-control"
+                               #postCode="ngModel">
+                               <div class="alert alert-danger"
+                               *ngIf="postCode.touched && !postCode.valid">
+                            Post Code is required
+                          </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="country">Country <span class="require">*</span></label>
+                        <select class="form-control input-sm"
+                                name="country"
+                                required
+                                ngModel
+                                id="country"
+                                #country="ngModel">
+                          <option value=""> --- Please Select ---</option>
+                          <option value="244">Aaland Islands</option>
+                          <option value="1">Afghanistan</option>
+                          <option value="2">Albania</option>
+                        </select>
+                        <div class="alert alert-danger"
+                        *ngIf="country.touched && !country.valid">
+                     Country is required
+                   </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="region-state">Region/State <span class="require">*</span></label>
+                        <select class="form-control input-sm"
+                                name="state"
+                                required
+                                ngModel
+                                id="region-state"
+                                #state="ngModel">
+                          <option value=""> --- Please Select ---</option>
+                          <option value="3513">Aberdeen</option>
+                          <option value="3514">Aberdeenshire</option>
+                          <option value="3515">Anglesey</option>
+                        </select>
+                        <div class="alert alert-danger"
+                        *ngIf="state.touched && !state.valid">
+                     State is required
+                   </div>
+                      </div>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="col-md-12">
+                    <button class="btn btn-primary  pull-right"
+                            [disabled]="register.invalid"
+                            type="submit">Register
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <!-- END PAYMENT ADDRESS -->
+        </div>
+        <!-- END CHECKOUT PAGE -->
+      </div>
+      <!-- END CONTENT -->
+    </div>
+    <!-- END SIDEBAR & CONTENT -->
+  </div>
+</div>
